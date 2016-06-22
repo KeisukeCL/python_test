@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3707e28b-d4a0-4ff7-a9fe-ac5b474919f7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>python_test.py</StartupFile>
+    <StartupFile>module1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,7 +25,9 @@
     <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="python_test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,2 +1,1 @@
-import numpy
-print
+﻿
