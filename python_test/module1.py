@@ -1,15 +1,23 @@
 ﻿#coding: utf-8
-from PIL import Image
-
+import io
 import numpy as np
-import pytube
+import pickle as pc
+import KeisukeKawamura as pdal
 
+pdal.pickle_load()
 
-def aiueo(a, b):
-    c = a + b
-    return c
+#with open('11_2.txt','r') as f:
+     #  d = np.array([v.rstrip().split('\t') for v in f.readlines()])
 
-x=4
-y=3
-t=aiueo(x, y)
-print (t)
+#d = [list(map(lambda x:float(x), d[v])) for v in range(0,len(d))]
+print("x座標：")
+x = np.array(d[0][10:10+32:2])
+xx = np.sum(x)
+print (d[0][10:10+32:2])
+print(xx*1.0/16)
+
+print("y座標：")
+y = np.array(d[0][11:11+32:2])
+yy = np.sum(y)
+print (d[0][11:11+32:2])
+print(yy*1.0/16)
