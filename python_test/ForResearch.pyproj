@@ -43,6 +43,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="5.avi" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
