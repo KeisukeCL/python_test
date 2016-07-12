@@ -2,10 +2,14 @@
 import glob
 import scipy as sp
 
+def file_rename(imageclass, folderpath, fextension):
+    files = sp.array(glob.glob(folderpath + '/*.*')) # ディレクトリ内のファイルを全て取得
 
-files = sp.array(glob.glob('G:/test/*.*')) # ディレクトリ内のファイルを全て取得
+    for i in range(0, len(files)):
+        fdir = folderpath + "/"
+        frename= str(imageclass) + "_" + str(i+1) + "." + str(fextension)
+        os.rename(files[i], fdir+frename)
 
-for i in range(0, len(files)):
-    fdir = "G:/test/"
-    frename= str(i+1)+".mp4"
-    os.rename(files[i], fdir+frename)
+if __name__ == "__main__":
+    for i in range(0, 10):
+        file_rename(i,"path","pgm")
