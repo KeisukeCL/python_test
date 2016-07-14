@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="5.avi" />
+    <Content Include="Improved_Trajectories.bat" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
