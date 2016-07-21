@@ -29,7 +29,7 @@ HOGFeature = sp.vstack(d[v][42:42+96] for v in range(0, len(d)))
 #MBHXFeature = sp.vstack(d[v][246:246+96] for v in range(0, len(d)))
 #MBHYFeature = sp.vstack(d[v][342:342+96] for v in range(0, len(d)))
 
-kmeans_hog_model = KMeans(n_clusters = 50, max_iter = 10).fit(HOGFeature)
+kmeans_hog_model = KMeans(n_clusters = 50).fit(HOGFeature)
 #kmeans_hof_model = KMeans(n_clusters = 4000, max_iter = 10).fit(HOFFeature)
 #kmeans_mbhx_model = KMeans(n_clusters = 4000, max_iter = 10).fit(MBHXFeature)
 #kmeans_mbhy_model = KMeans(n_clusters = 4000, max_iter = 10).fit(MBHYFeature)
