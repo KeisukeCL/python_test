@@ -36,5 +36,5 @@ kmeans_hog_model = KMeans(n_clusters = 50).fit(HOGFeature)
 labels = kmeans_hog_model.labels_
 for label in labels:
     print (label)
-#with open ("kmeanshog.pkl", "wb") as aa:
- #   pc.dump(kmeans_hog_model, aa)
+with open ("kmeanshog.pkl", "wb") as aa:
+    pc.dump(kmeans_hog_model, aa)
