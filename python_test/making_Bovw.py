@@ -46,4 +46,4 @@ bowhof /= sp.linalg.norm(bowhof)
 bowmbh /= sp.linalg.norm(bowmbh)
 bow = sp.r_[bowtraj, bowhog, bowhof, bowmbh]    #特徴量ごとのbovwを全て連結
 
-sp.save("1_1.txt", bow) #bovwの保存
+sp.save("1_1.txt（新しいフォルダに保管）", bow) #bovwの保存
