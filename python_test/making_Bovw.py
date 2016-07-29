@@ -2,12 +2,14 @@
 import scipy as sp
 from sklearn.cluster import KMeans
 import pickle as pc
+import glob
+import os
 
 
 NUMOF_K = 4000  #codebookのクラス数と同じように
 
 #codebookのロード
-with open("kmeanstrajectories.pkl", "rb") as aa:
+with open("kmeanstraj.pkl", "rb") as aa:
     codebooktraj = pc.load(aa)
 
 with open("kmeanshog.pkl", "rb") as aa:
@@ -25,25 +27,30 @@ bowhog = sp.zeros(NUMOF_K)
 bowhof = sp.zeros(NUMOF_K)
 bowmbh = sp.zeros(NUMOF_K)
 
-with open("1_1.txt","r") as f:  #trajectoriesの読み込み
-    d = sp.array([v.rstrip().split('\t') for v in f.readlines()])
+# Trajectoriesディレクトリ内のファイルを全て取得
+lists = sp.array(glob.glob("G:/UCF50_Trajectories/*.txt*"))
+for file in lists:
+    filename = os.path.basename(file).split(".")  #「.」で分割
 
-d = [list(map(lambda x:float(x), d[v])) for v in range(0,len(d))]
+    with open(file,"r") as f:  #trajectoriesの読み込み
+        d = sp.array([v.rstrip().split('\t') for v in f.readlines()])
 
-for v in range(0, len(d)):  #Bag of Visual Wordsの作成
-    clstraj = codebooktraj.predict(d[v][42:42+96])
-    bowtraj[clstraj] += 1
-    clshog = codebookhog.predict(d[v][42:42+96])
-    bowhog[clshog] += 1
-    clshof = codebooktraj.predict(d[v][138:138+108])
-    bowhof[clshof] += 1
-    clsmbh = codebooktraj.predict(d[v][246:246+96])
-    bowmbh[clsmbh] += 1
-#Bag of visual wordsの正規化
-bowtraj /= sp.linalg.norm(bowtraj)
-bowhog /= sp.linalg.norm(bowhog)
-bowhof /= sp.linalg.norm(bowhof)
-bowmbh /= sp.linalg.norm(bowmbh)
-bow = sp.r_[bowtraj, bowhog, bowhof, bowmbh]    #特徴量ごとのbovwを全て連結
+    d = [list(map(lambda x:float(x), d[v])) for v in range(0,len(d))]
 
-sp.save("1_1.txt（新しいフォルダに保管）", bow) #bovwの保存
+    for v in range(0, len(d)):  #Bag of Visual Wordsの作成
+        clstraj = codebooktraj.predict(d[v][10:10+32])
+        bowtraj[clstraj] += 1
+        clshog = codebookhog.predict(d[v][42:42+96])
+        bowhog[clshog] += 1
+        clshof = codebooktraj.predict(d[v][138:138+108])
+        bowhof[clshof] += 1
+        clsmbh = codebooktraj.predict(d[v][246:246+192])
+        bowmbh[clsmbh] += 1
+    #Bag of visual wordsの正規化
+    bowtraj /= sp.linalg.norm(bowtraj)
+    bowhog /= sp.linalg.norm(bowhog)
+    bowhof /= sp.linalg.norm(bowhof)
+    bowmbh /= sp.linalg.norm(bowmbh)
+    bovw = sp.r_[bowtraj, bowhog, bowhof, bowmbh]    #特徴量ごとのbovwを全て連結
+
+    sp.save("G:/UCF50_BoVW/" + str(filename[0]) + ".csv", bovw) #bovwの保存
