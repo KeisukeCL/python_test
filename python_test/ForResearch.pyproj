@@ -25,6 +25,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="filepath_get.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="file_rename.py" />
     <Compile Include="making_Bovw.py" />
     <Compile Include="making_Bovw_dictionary.py" />
@@ -38,6 +41,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="python_test.py" />
+    <Compile Include="trajectories_filename_get.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="trajectories_pickle_load.py" />
     <Compile Include="trajectories_pickle_dump.py">
       <SubType>Code</SubType>
@@ -47,11 +53,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="0.xml" />
     <Content Include="1.txt" />
-    <Content Include="1.xml" />
-    <Content Include="2.xml" />
-    <Content Include="3.xml" />
     <Content Include="4.xml" />
     <Content Include="5.avi" />
     <Content Include="Improved_Trajectories.bat" />

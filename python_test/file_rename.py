@@ -12,5 +12,5 @@ def file_rename(imageclass, folderpath, fextension):
         os.rename(files[i], fdir+frename)
 
 if __name__ == "__main__":
-    for i in range(1, 34):
-        file_rename(i,"G:/UCF50/"+str(i),"avi")
+    for i in range(1, 51):
+        file_rename(i,"C:/Users/KAWAMURA/Downloads/UCF50/"+str(i),"avi")

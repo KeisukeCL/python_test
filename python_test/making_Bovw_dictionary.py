@@ -1,4 +1,4 @@
-# coding = UTF-8
+﻿# coding = UTF-8
 import scipy as sp
 from sklearn.cluster import KMeans
 import pickle as pc
@@ -10,7 +10,7 @@ n_clusters = 4000   #k-meansのクラスタ数の設定
 for i in range (1, 51):   # ランダムにtrajectoriesをロード
     with open("G:/UCF50_Trajectories/" + str(i) + "_1.txt","r") as f:
         d = sp.array([v.rstrip().split('\t') for v in f.readlines()])
-
+    print("Loading... " + "G:/UCF50_Trajectories/" + str(i) + "_1.txt" )
     d = [list(map(lambda x:float(x), d[v])) for v in range(0,len(d))]
 
     # それぞれの特徴を取り出す（予めTRAJFeatureを初期化する必要があるので代わりの方法）
@@ -23,6 +23,7 @@ for i in range (1, 51):   # ランダムにtrajectoriesをロード
                                for v in range(0, len(d)))
         MBHFeature = sp.vstack(d[v][246:246 + 192]
                                for v in range(0, len(d)))
+        print("サンプル数は"+str( len(TRAJFeature))+"個です")
     else:
         TRAJFeature2 = sp.vstack(d[v][10:10 + 32]
                                  for v in range(0, len(d)))
@@ -37,13 +38,14 @@ for i in range (1, 51):   # ランダムにtrajectoriesをロード
         HOGFeature = sp.vstack((HOGFeature, HOGFeature2))
         HOFFeature = sp.vstack((HOFFeature, HOFFeature2))
         MBHFeature = sp.vstack((MBHFeature, MBHFeature2))
-
+        print("サンプル数は"+str( len(TRAJFeature))+"個です")
         del d, TRAJFeature2, HOFFeature2, MBHFeature2
         gc.collect()
 
     if len(TRAJFeature) > 1000000:   # 1000000以上のサンプルを取得できたらbreak
         break
 
+print("クラスタリングを実行します")
 # クラスタリング
 kmeans_traj_model = KMeans(n_clusters).fit(TRAJFeature)
 kmeans_hog_model = KMeans(n_clusters).fit(HOGFeature)
