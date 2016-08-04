@@ -1,3 +1,11 @@
 # coding = UTF-8
-for i in range (1, 50):
-    print (i)
+import resource
+
+
+
+rsrc = resource.RLIMIT_AS
+soft, hard = resource.getrlimit(rsrc)
+print(rsrc)
+print(soft)
+print(hard)
+print(1024*1000000000*11)

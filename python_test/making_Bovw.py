@@ -30,14 +30,16 @@ bowmbh = sp.zeros(NUMOF_K)
 # Trajectoriesディレクトリ内のファイルを全て取得
 lists = sp.array(glob.glob("G:/UCF50_Trajectories/*.txt*"))
 for file in lists:
-    filename = os.path.basename(file).split(".")  #「.」で分割、filename[0]が欲しいファイル名
+    # 「.」で分割、filename[0]が欲しいファイル名
+    filename = os.path.basename(file).split(".")
 
     with open(file,"r") as f:  # trajectoriesの読み込み
         d = sp.array([v.rstrip().split('\t') for v in f.readlines()])
 
-    d = [list(map(lambda x:float(x), d[v])) for v in range(0,len(d))]
+    d = [list(map(lambda x: float(x), d[v])) for v in range(0,len(d))]
 
-    for v in range(0, len(d)):  # Bag of Visual Wordsの作成
+    # Bag of Visual Wordsの作成
+    for v in range(0, len(d)):
         clstraj = codebooktraj.predict(d[v][10:10+32])
         bowtraj[clstraj] += 1
         clshog = codebookhog.predict(d[v][42:42+96])
