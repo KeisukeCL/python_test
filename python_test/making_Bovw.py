@@ -1,4 +1,4 @@
-# coding = UTF-8
+﻿# coding = UTF-8
 import scipy as sp
 from sklearn.cluster import KMeans
 import pickle as pc
@@ -6,7 +6,7 @@ import glob
 import os
 
 
-NUMOF_K = 4000  # codebookのクラス数と同じように
+NUMOF_K = 1000  # codebookのクラス数と同じように
 
 # codebookのロード
 with open("kmeanstraj.pkl", "rb") as aa:
