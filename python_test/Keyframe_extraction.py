@@ -22,7 +22,8 @@ def Keyframe_extraction(videodetasetpath, keypath, videonumber):
         hist_now = cv2.calcHist([hsv], [0, 1], None, [30, 32],
                                 [0, 180, 0, 256])  # フレームのHSV2次元ヒストグラムを算出（[30, 32]がヒストグラムの量子化レベル）
 
-        if frame_number == 1:  # 最初のフレーム用の例外処理
+        # 最初のフレーム用の例外処理
+        if frame_number == 1:
             frame_number += 1
             hist_prev = hist_now
             cv2.imwrite(keyframepath + str(keyframenumber)+ ".jpg", now_frame)
@@ -32,22 +33,23 @@ def Keyframe_extraction(videodetasetpath, keypath, videonumber):
 
         corr = cv2.compareHist(hist_prev, hist_now, cv2.HISTCMP_CORREL)  # ヒストグラムの比較（相関係数を利用）
         hist_prev = hist_now  # 今のフレームのヒストグラムを前のフレームのヒストグラムを格納している変数に移動
-        if corr < Threshold:  # 相関が閾値未満なら、そのフレームを保存
+
+        # 相関が閾値未満なら、そのフレームを保存
+        if corr < Threshold:
             cv2.imwrite(keyframepath + str(keyframenumber) + ".jpg", now_frame)
             keyframenumber += 1
             previousframe = 0
             continue
-
+        # 最後にキーフレームを取得してから10フレームが経過したらそのフレームもキーフレームとして保存
         elif previousframe == 10:
             cv2.imwrite(keyframepath + str(keyframenumber) + ".jpg", now_frame)
             keyframenumber += 1
             previousframe = 0
             continue
-
+        #上記の条件を全く満たさないときはpreviousframeだけを+1
         else:
             previousframe += 1
             continue
-
 
     cap.release()
 
