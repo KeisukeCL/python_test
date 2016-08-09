@@ -1,5 +1,5 @@
 ﻿# coding = UTF-8
-import scipy as sp
+import numpy as sp
 from sklearn.cluster import KMeans
 import pickle as pc
 import glob
@@ -8,19 +8,7 @@ import gc
 
 NUMOF_K = 1000  # codebookのクラス数と同じように
 
-# codebookのロード
-with open("kmeanstraj.pkl", "rb") as aa:
-    codebooktraj = pc.load(aa)
 
-with open("kmeanshog.pkl", "rb") as aa:
-    codebookhog = pc.load(aa)
-
-with open("kmeanshof.pkl", "rb") as aa:
-    codebookhof = pc.load(aa)
-
-with open("kmeansmbh.pkl", "rb") as aa:
-    codebookmbh = pc.load(aa)
-print("codebookのローディング完了")
 
 # Trajectoriesディレクトリ内のファイルを全て取得
 lists = sp.array(glob.glob("G:/UCF50_Trajectories/*.txt*"))
